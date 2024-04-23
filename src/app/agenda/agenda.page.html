@@ -1,0 +1,110 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>agenda</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text='All activities' defaultHref='tabs/tab-activities'>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">agenda</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <section id="events">
+    <div style=' padding: 20px'>
+      <ion-select [(ngModel)]="selectedTag" (ionChange)="filterEventsByTag()" placeholder='Choose a category'>
+        <ion-select-option value="">All</ion-select-option> <!-- Option "Tous" -->
+        <ion-select-option *ngFor="let tag of uniqueTags" [value]="tag" placeholder='Choose a category'>{{ tag }}
+        </ion-select-option>
+      </ion-select>
+
+    </div>
+
+    <ng-container *ngIf='this.filteredEvents'>
+      <ion-card *ngFor='let event of filteredEvents'>
+        <div style='display:flex'>
+          <div style='flex: 1; '>
+            <img style='object-fit: cover;
+                height: 100%;' [src]='event.cover_url'>
+          </div>
+          <div style='flex: 2'>
+            <ion-card-header>
+              <ion-card-subtitle [innerHTML]='event.title'></ion-card-subtitle>
+              <div class='tags'>
+                <ion-chip color="primary" *ngIf="event.price_type === 'gratuit'">
+                  {{ event.price_type === 'gratuit' ? 'free' : null }}
+                </ion-chip>
+                <a [href]="event.url" target="_blank">
+                  <!-- Utilisation de target="_blank" pour ouvrir le lien dans un nouvel onglet -->
+                  <ion-chip color="success">
+                    more info
+                  </ion-chip>
+                </a>
+
+
+              </div>
+              <ion-chip>end - {{ event.date_end | date: 'MM/dd/yyyy' }}</ion-chip>
+              <ion-chip>start - {{ event.date_start | date: 'MM/dd/yyyy' }}</ion-chip>
+            </ion-card-header>
+
+
+
+          </div>
+        </div>
+
+
+      </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf='this.activities && this.filteredEvents.length === 0'>
+      <ion-card *ngFor='let event of activities'>
+        <div style='display:flex'>
+          <div style='flex: 1; '>
+            <img style='object-fit: cover;
+            height: 100%;' [src]='event.cover_url'>
+          </div>
+          <div style='flex: 2'>
+            <ion-card-header>
+              <ion-card-subtitle [innerHTML]='event.title'></ion-card-subtitle>
+              <div class='tags'>
+                <ion-chip color="primary" *ngIf="event.price_type === 'gratuit'">
+                  {{ event.price_type === 'gratuit' ? 'free' : null }}
+                </ion-chip>
+                <a [href]="event.url" target="_blank">
+                  <!-- Utilisation de target="_blank" pour ouvrir le lien dans un nouvel onglet -->
+                  <ion-chip color="success">
+                    more info
+                  </ion-chip>
+                </a>
+
+
+              </div>
+              <ion-chip>end - {{ event.date_end | date: 'MM/dd/yyyy' }}</ion-chip>
+              <ion-chip>start - {{ event.date_start | date: 'MM/dd/yyyy' }}</ion-chip>
+
+
+            </ion-card-header>
+
+            <!-- <ion-card-content>
+                    {{ event.lead_text | slice:0:70 }}{{ event.lead_text.length > 20 ? '...' : '' }}
+                  </ion-card-content> -->
+          </div>
+        </div>
+
+
+      </ion-card>
+    </ng-container>
+
+    <ng-container *ngIf='this.activities.length === 0'>
+      No Data
+    </ng-container>
+
+  </section>
+</ion-content>

@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>BALLADES</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text='All activities' defaultHref='tabs/tab-activities'>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">BALLADES</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <section id='list' *ngIf="list$ | async as list">
+    <ion-card *ngFor='let item of list' class='card-style'
+      [style.backgroundImage]="'url(' + item._embedded['wp:featuredmedia'][0]?.source_url + ')'">
+
+      <div class="overlay"></div>
+      <ion-card-header>
+        <ion-card-title style='color: white;'>{{item.title.rendered}}</ion-card-title>
+        <ion-card-subtitle style='color: white;'>Number of stops : {{item.acf.itineraire_infos.length}}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- <a [href]='item.acf.url' target='_blank'>
+          <ion-button>More info</ion-button>
+        </a> -->
+        <ion-button [routerLink]="['../balades-list-details', item.id]">More info</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </section>
+
+
+</ion-content>

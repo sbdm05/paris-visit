@@ -1,0 +1,16 @@
+.description {
+  text-align: justify;
+}
+img{
+      max-width: 100%;
+        width: auto;
+        height: auto;
+}
+.title-full-text-display {
+  white-space: nowrap!important;
+  /* Prevent wrapping */
+  overflow: hidden!important;
+  /* Hide any overflow */
+  text-overflow: ellipsis!important;
+  /* Display ellipsis (...) for overflow */
+}

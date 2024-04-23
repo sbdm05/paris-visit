@@ -1,0 +1,113 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>trip details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text='See all days' defaultHref='tabs/tab3'>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Day {{title}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div #content>
+    <div [id]="mapId" style="height: 50vh; width: 100%" *ngIf='this.mapId'>
+    </div>
+  </div>
+  <!-- <app-map-main [mapId]='mapId' *ngIf='this.mapId'></app-map-main> -->
+
+
+  <div class="list">
+
+
+    <ng-container *ngIf='this.selectedDayPlans.length > 0'>
+      <ion-button expand="block" routerLink='../../../tabs/tab2'>Add a new stop</ion-button>
+      <ion-card *ngFor='let location of selectedDayPlans'>
+        <div style='display:flex; margin-right: 0.7rem;align-items: center;
+        justify-content: space-between;'>
+          <ion-card-header>
+
+            <ion-card-subtitle>
+              <p>Place : {{location.properties.name}}</p>
+              <p>
+                Address: {{location.properties.address.road}} - {{location.properties.address.postcode}}</p>
+            </ion-card-subtitle>
+
+          </ion-card-header>
+
+          <!-- <ion-card-content>
+            Here's a small text description for the card content. Nothing more, nothing less.
+          </ion-card-content> -->
+          <div class='btn-block'>
+            <ion-button color='success'>
+              <a [href]="generateEncodedURL(location.properties.name)">Get
+                tickets</a>
+            </ion-button>
+            <ion-button color='warning' (click)='onDelete(location)'>Delete</ion-button>
+          </div>
+        </div>
+
+
+      </ion-card>
+      <ion-button expand="block" (click)='generatePDF(this.selectedDayPlans)'>Get your Day {{title}} souvenir
+      </ion-button>
+
+
+
+    </ng-container>
+
+
+    <ng-container *ngIf='this.selectedDayPlans.length === 0'>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>No Plan at the moment</ion-card-title>
+
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-button routerLink='../../../tabs/tab2'>Add a new stop</ion-button>
+        </ion-card-content>
+      </ion-card>
+
+    </ng-container>
+  </div>
+
+
+  <!-- <div #container style="height: 100vh; width: 100%">
+  </div> -->
+
+  <ng-container *ngIf='!this.mapId'>
+    OOps, please refresh the page
+  </ng-container>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Delete a stop</ion-title>
+          <!-- <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons> -->
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        You're about to delete this stop
+        this action is not reversible !
+        <ion-button (click)='onConfirmDelete()' color='danger'>Delete</ion-button>
+        <ion-button (click)='onCancelDelete()' color='success'>Cancel</ion-button>
+
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
+
+
+</ion-content>

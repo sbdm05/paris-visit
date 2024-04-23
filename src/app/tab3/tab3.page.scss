@@ -1,0 +1,20 @@
+.links{
+      display: flex;
+        justify-content: space-between;
+}
+.links-button{
+  display: flex;
+}
+.links-button a{
+  color: white;
+text-decoration: none;
+}
+.title-links{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-card {
+  background: rgb(227, 227, 227) !important;
+}

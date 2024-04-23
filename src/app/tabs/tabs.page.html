@@ -1,18 +1,48 @@
 <ion-tabs>
+
+  <ion-card *ngIf='isWelcomeVisible'>
+    <ion-card-header style='display: flex;flex-direction: row;  justify-content: space-around;align-items: center;'>
+      <ion-avatar style='padding-right: 0.4rem;'>
+        <img alt="Silhouette of a person's head" src="../../assets/imgs/logo-150.png" />
+      </ion-avatar>
+      <div>
+        <ion-card-subtitle>Welcome to VisitParis</ion-card-subtitle>
+        <ion-card-subtitle>Need Help ? Go check the Help tab at any time</ion-card-subtitle>
+      </div>
+      <div>
+
+        <ion-icon [icon]="'remove-circle'" size='small' (click)='onDeleteWelcome()'></ion-icon>
+      </div>
+
+
+
+    </ion-card-header>
+
+  </ion-card>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="tab1" href="/tabs/tab1">
-      <ion-icon aria-hidden="true" name="triangle"></ion-icon>
-      <ion-label>Tab 1</ion-label>
+
+
+    <ion-tab-button tab="tab1" href="/tabs/tab1" replaceUrl="true">
+      <ion-icon aria-hidden="true" name="location-outline"></ion-icon>
+      <ion-label>Map</ion-label>
+    </ion-tab-button>
+    <!--
+    <ion-tab-button tab="tab2" href="/tabs/tab2" replaceUrl="true">
+      <ion-icon aria-hidden="true" name="search-outline"></ion-icon>
+      <ion-label>Search</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2" href="/tabs/tab2">
-      <ion-icon aria-hidden="true" name="ellipse"></ion-icon>
-      <ion-label>Tab 2</ion-label>
+    <ion-tab-button tab="tab3" href="/tabs/tab3" replaceUrl="true">
+      <ion-icon aria-hidden="true" name="map-outline"></ion-icon>
+      <ion-label>My plans</ion-label>
+    </ion-tab-button> -->
+    <ion-tab-button tab="tab-activities" href="/tabs/tab-activities" replaceUrl="true">
+      <ion-icon aria-hidden="true" name="ticket-outline"></ion-icon>
+      <ion-label>Activities</ion-label>
     </ion-tab-button>
-
-    <ion-tab-button tab="tab3" href="/tabs/tab3">
-      <ion-icon aria-hidden="true" name="square"></ion-icon>
-      <ion-label>Tab 3</ion-label>
+    <ion-tab-button tab="tab4" href="/tabs/tab-activities" replaceUrl="true">
+      <ion-icon aria-hidden="true" name="help-outline"></ion-icon>
+      <ion-label>Help</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

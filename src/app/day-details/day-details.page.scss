@@ -1,0 +1,17 @@
+.leaflet-control {
+    position: fixed;
+      bottom: 100px;
+      left: 0px;
+}
+ion-button a{
+  color: white;
+    text-decoration: none;
+}
+.btn-block{
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+ion-label.sc-ion-label-ios-h.sc-ion-label-ios-s.ios{
+  font-size: 0.8rem;
+}

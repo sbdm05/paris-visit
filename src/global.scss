@@ -24,3 +24,47 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+.leaflet-control-geocoder {
+  position: fixed !important;
+  top: 80px !important;
+  left: 0 !important;
+  display: block !important;
+  width: 350px !important;
+  background-color: white;
+}
+
+ul.leaflet-control-geocoder-alternatives.leaflet-control-geocoder-alternatives-minimized  li  a{
+  width: 100%!important;
+}
+ul.leaflet-control-geocoder-alternatives.leaflet-control-geocoder-alternatives-minimized li  {
+  list-style-type: none!important;
+}
+.leaflet-touch .leaflet-bar a:last-child {
+  border-bottom-left-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
+  // padding-bottom: 40px !important;
+  // text-align: left !important;
+  // padding-left: 10px !important;
+  // font-size: 0.5rem;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: none !important;
+  color: inherit !important;
+  box-shadow: none !important;
+}
+a.leaflet-popup-close-button{
+  display: none;
+}
+
+
+
+img.leaflet-marker-icon.huechange.leaflet-zoom-animated.leaflet-interactive {
+  // background: white;
+  border-radius: 20%;
+  // filter: hue-rotate(120deg);
+}
+.leaflet-retina .leaflet-control-layers-toggle {
+  background-image: url('./assets/icon/burger-bar.png')!important;
+  background-size: 26px 26px;
+}

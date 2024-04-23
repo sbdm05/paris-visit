@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class='title-full-text-display'>{{title}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text='See all ballades' defaultHref='tabs/balades-list'>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large" class='title-full-text-display'>{{title}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ng-container *ngIf='item'>
+    <div>
+
+      <ion-card-title>{{item.title.rendered}}</ion-card-title>
+    </div>
+    <ion-card *ngFor='let place of item.acf.itineraire_infos'>
+      <ion-card-header>
+
+        {{place.nom | uppercase}}
+
+      </ion-card-header>
+
+      <ion-card-content>
+        {{ place.description}}
+
+      </ion-card-content>
+
+
+
+    </ion-card>
+  </ng-container>
+
+</ion-content>
+
+
+<!-- ajouter la carte + photo -->

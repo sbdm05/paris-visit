@@ -1,0 +1,145 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Discover</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Discover</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <section id='featured' *ngIf="featuredGuide$ | async as featuredGuide">
+
+    <ion-card class='card-style' *ngFor="let guide of featuredGuide"
+      [style.backgroundImage]="'url(' + guide._embedded['wp:featuredmedia'][0]?.source_url + ')'">
+
+      <div class="overlay"></div>
+
+      <div>
+        <ion-card-header>
+          <ion-card-title style='color: white;'>{{guide.title.rendered}}</ion-card-title>
+          <!-- <ion-card-subtitle style='color: white;'>Card Subtitle</ion-card-subtitle> -->
+          <ion-card-subtitle style='color: white;'>Don't miss !</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-button [routerLink]="['../tours-list-details', guide.id]">More info</ion-button>
+        </ion-card-content>
+      </div>
+
+    </ion-card>
+  </section>
+
+  <section id='tours'>
+    <ion-card [style.backgroundImage]="'url(assets/icon/metro.jpg)'" class='card-background'>
+      <div class="overlay"></div>
+      <div>
+        <ion-card-header>
+          <ion-card-title style='color: white;'>Discover more tours</ion-card-title>
+          <ion-card-subtitle style='color: white;'>Food, streetart and more</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <a routerLink="../tours-list">
+            <ion-button>More tours</ion-button>
+          </a>
+        </ion-card-content>
+      </div>
+    </ion-card>
+  </section>
+
+  <!-- <section id='agenda'>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Agenda</ion-card-title>
+        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        Here's a small text description for the card content. Nothing more, nothing less.
+        <a routerLink='../agenda'>
+          <ion-button>See the upcoming agenda</ion-button>
+        </a>
+      </ion-card-content>
+    </ion-card>
+  </section> -->
+
+  <section id='museums'>
+    <ion-card [style.backgroundImage]="'url(assets/icon/musee.jpg)'" class='card-background'>
+
+      <div class="overlay"></div>
+
+      <ion-card-header>
+        <ion-card-title style='color: white;'>Museums</ion-card-title>
+        <!-- <ion-card-subtitle style='color: white;'>Card Subtitle</ion-card-subtitle> -->
+      </ion-card-header>
+
+      <ion-card-content style='color: white;'>
+        Paris has plenty of museums to explore, for all ages and all styles. Go check it out.
+        <a routerLink='../museums-list'>
+          <ion-button>See list of museums</ion-button>
+        </a>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+
+
+  <section id='walking-itineraries'>
+    <ion-card [style.backgroundImage]="'url(assets/icon/plan.png)'" class='card-background'>
+      <div class="overlay"></div>
+      <ion-card-header>
+        <ion-card-title style='color: white;'>Paris by Walk</ion-card-title>
+        <!-- <ion-card-subtitle style='color: white;'>Card Subtitle</ion-card-subtitle> -->
+      </ion-card-header>
+
+      <ion-card-content style='color: white;'>
+        We have curated for you some nice walks around the city. Prepare your shoes !
+        <a routerLink='../balades-list'>
+          <ion-button>See our best spots in the city</ion-button>
+        </a>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+  <!-- <section id='city-cards'>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>City Cards</ion-card-title>
+        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        Here's a small text description for the card content. Nothing more, nothing less.
+        <a>
+          <ion-button>Infos</ion-button>
+        </a>
+      </ion-card-content>
+    </ion-card>
+  </section> -->
+
+  <section id='souvenirs'>
+    <ion-card [style.backgroundImage]="'url(assets/icon/bag.png)'" class='card-background'>
+      <div class="overlay"></div>
+      <ion-card-header>
+        <ion-card-title style='color: white;'>Get a custom souvenir</ion-card-title>
+        <!-- <ion-card-subtitle>Find the perfect gift gere</ion-card-subtitle> -->
+      </ion-card-header>
+
+      <ion-card-content>
+        <a href='https://parisvisit.fr/boutique/' target='_blank'>
+          <ion-button>Find the perfect gift</ion-button>
+        </a>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+
+
+
+
+
+</ion-content>

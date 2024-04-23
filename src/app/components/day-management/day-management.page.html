@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{title}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+
+      <ion-card-subtitle>{{this.selectedDestination.name}}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-select (ionChange)="pickADay($event)" value="all" interface='popover' placeholder='Select a day'>
+        <ion-select-option *ngFor='let day of customPlans; let i = index'>Day
+          <span>{{i+1}}</span>
+        </ion-select-option>
+      </ion-select>
+
+      <ion-button (click)='onAdd()'>Add</ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-toast [isOpen]="isToastOpen" [message]="errorMessage" [duration]="2500" (didDismiss)="setOpen(false)"
+    [color]='colorToast'>
+  </ion-toast>
+</ion-content>

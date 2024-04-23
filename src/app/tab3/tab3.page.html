@@ -1,17 +1,118 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+
+
+    <ion-title size="large">My Plans</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <div style='display:flex; align-items:center'>
+        <app-icon icon="map-outline" sizeIcon='large'></app-icon>
+        <ion-title size="large">My Plans</ion-title>
+      </div>
+
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <section>
+
+
+    <ng-container *ngIf='this.customPlans.length > 0'>
+      <div>
+        <div style='display: flex;justify-content: space-between;'>
+          <ion-card style='box-shadow: none;'>
+
+            <ion-button expand="block" (click)='onDayAdd()' color='success'>Add a day</ion-button>
+          </ion-card>
+          <ion-card style='box-shadow: none;'>
+
+            <ion-button expand="block" color='dark' routerLink='../tab-map-all-days'>See map for all days
+            </ion-button>
+          </ion-card>
+        </div>
+
+        <ion-card *ngFor='let i of customPlans; let index = index' class='day-card'>
+          <ion-card-header>
+            <div class="title-links">
+              <ion-card-title>Day {{index +1}}</ion-card-title>
+              <app-icon icon="trash-outline" sizeIcon='small' colorIcon='danger' (click)='onDeleteDay(i)'></app-icon>
+            </div>
+
+
+          </ion-card-header>
+
+          <ion-card-content>
+            <!-- <ion-button (click)="onDetailsAdd(i)">Plan Day {{index +1}}</ion-button> -->
+
+            <div class='links'>
+              <div class='links-button'>
+                <ion-button>
+                  <a [routerLink]="['../../tabs/day-details', i.id ]" replaceUrl="true">See Day {{index +1}} </a>
+                </ion-button>
+                <ion-button>
+
+                  <a routerLink='../../tabs/tab2'>Add a stop to Day {{index +1}}</a>
+                </ion-button>
+              </div>
+
+
+            </div>
+
+
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+
+    </ng-container>
+
+    <ng-container *ngIf='this.customPlans.length === 0'>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title></ion-card-title>
+          <ion-card-subtitle>
+            No Day planned at the moment. Add a day with the button 'Add a day' and start to plan your trip to Paris.
+          </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <!-- <ion-button (click)="onDetailsAdd(i)">Plan Day {{index +1}}</ion-button> -->
+          <ion-button (click)='onDayAdd()'>Add a day</ion-button>
+        </ion-card-content>
+      </ion-card>
+
+    </ng-container>
+
+  </section>
+
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Plan</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        You're about to delete day
+        this action is not reversible !
+        <ion-button (click)='onConfirmDelete()' color='danger'>Delete</ion-button>
+        <ion-button (click)='onCancelDelete()' color='success'>Cancel</ion-button>
+
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
+
 </ion-content>
